@@ -4,14 +4,14 @@ const authMiddleware = (req, res, next) => {
     const { authorization } = req.headers
 
     if (!authorization) {
-        notAuth(res)
+        return notAuth(res)
     }
 
     const token = authorization.replace('Bearer ', '')
 
-    jwt.verify(token, process.env.JWTSECRET, (err, payload) => {
+    jwt.verify(token, process.env.JWT_SECRET, (err, payload) => {
         if (err) {
-            notAuth(res)
+            return notAuth(res)
         }
 
         const { id } = payload

@@ -39,6 +39,8 @@ router.post("/signup", asyncHandler(async (req, res, next) => {
 router.post('/login', asyncHandler(async (req, res, next) => {
   const { username, password } = req.body
 
+  console.log(password)
+
   //find user
   const user = await User.findOne({ username }).lean()
 
