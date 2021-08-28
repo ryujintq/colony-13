@@ -34,6 +34,10 @@ const Signup = () => {
             return dispatch(setAuthError('Please fill all fields'))
         }
 
+        if (password !== password2) {
+            return dispatch(setAuthError('Passwords do not match'))
+        }
+
         dispatch(signup(signupData))
     }
 

@@ -16,7 +16,7 @@ describe("User route test", () => {
     })
     after(() => closeDB())
 
-    describe("/api/v1/user/:username", () => {
+    describe("GET /api/v1/user/:username", () => {
         it("should return error if user does not exist", async () => {
             const { statusCode, body } = await request(app)
                 .get("/api/v1/user/ryujin1")
@@ -30,6 +30,30 @@ describe("User route test", () => {
         it("should return user if it exists", async () => {
             const { statusCode, body } = await request(app)
                 .get("/api/v1/user/ryujin")
+                .set({ 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2Mjk0NzYwNDd9.W2pRyuKqaRH4T30hGvVQiLZf_lyB3bMsiPHtHyNy4vE' })
+            expect(statusCode).to.equal(200)
+            expect(body.data.user).to.ok
+            expect(body.status).to.be.equal("success")
+            expect(body.message).to.equal("User found")
+        })
+    })
+
+    describe("POST /api/v1/user/:username", () => {
+        it("should return error if user does not exist", async () => {
+            const { statusCode, body } = await request(app)
+                .post("/api/v1/user/ryujin1")
+                .send({ role: 'Healer', level: '20', weaponPrimary: 'Spear', weaponSecondary: 'Bow' })
+                .set({ 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2Mjk0NzYwNDd9.W2pRyuKqaRH4T30hGvVQiLZf_lyB3bMsiPHtHyNy4vE' })
+            expect(statusCode).to.equal(404)
+            expect(body.error).to.ok
+            expect(body.error).to.be.a("string")
+            expect(body.error).to.equal("User not found")
+        })
+
+        it("should return user if it exists", async () => {
+            const { statusCode, body } = await request(app)
+                .post("/api/v1/user/ryujin")
+                .send({ role: 'Healer', level: '20', weaponPrimary: 'Spear', weaponSecondary: 'Bow' })
                 .set({ 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2Mjk0NzYwNDd9.W2pRyuKqaRH4T30hGvVQiLZf_lyB3bMsiPHtHyNy4vE' })
             expect(statusCode).to.equal(200)
             expect(body.data.user).to.ok

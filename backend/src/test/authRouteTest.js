@@ -17,7 +17,7 @@ describe("Auth route test", () => {
 
   after(() => closeDB())
 
-  describe('/api/v1/signup', () => {
+  describe('POST /api/v1/signup', () => {
     it("should not accept empty fields", async () => {
       const { statusCode, body } = await request(app).post('/api/v1/auth/signup').send({ username: '', password: '' })
       expect(statusCode).to.equal(400)
@@ -55,7 +55,7 @@ describe("Auth route test", () => {
     })
   })
 
-  describe('/api/v1/login', () => {
+  describe('POST /api/v1/login', () => {
     it('should return error if user not found', async () => {
       const { statusCode, body } = await request(app).post('/api/v1/auth/login').send({ username: '', password: '' })
       expect(statusCode).to.equal(400)

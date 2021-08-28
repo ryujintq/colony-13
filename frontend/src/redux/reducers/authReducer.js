@@ -1,9 +1,9 @@
 import { localStorageGet } from "../../utils/localStorage"
-import { CLEARAUTH, SETAUTH, SETAUTHERROR } from "../constants/authConstants"
+import { CLEAR_AUTH, SET_AUTH, SET_AUTH_ERROR, UPDATE_USER } from "../constants/authConstants"
 
 const initialState = {
     token: localStorageGet('token'),
-    user: localStorageGet('user'),
+    user: localStorageGet('user') ? JSON.parse(localStorageGet('user')) : {},
     authError: ''
 }
 
@@ -11,12 +11,14 @@ const authReducer = (state = initialState, action) => {
     const { type, payload } = action
 
     switch (type) {
-        case SETAUTH:
+        case SET_AUTH:
             const { user, token } = payload
             return { token, user, authError: '' }
-        case CLEARAUTH:
+        case CLEAR_AUTH:
             return { token: null, user: null, authError: '' }
-        case SETAUTHERROR:
+        case UPDATE_USER:
+            return { ...state, user: payload }
+        case SET_AUTH_ERROR:
             const { errorMessage } = payload
             return { ...state, authError: errorMessage }
         default:

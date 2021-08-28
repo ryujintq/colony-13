@@ -16,11 +16,26 @@ const userSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
-    company: String,
-    role: String,
-    level: Number,
-    weaponMain: String,
-    weaponSecondary: String
+    company: {
+        type: String,
+        default: ''
+    },
+    role: {
+        type: String,
+        default: 'Please Select'
+    },
+    level: {
+        type: String,
+        default: 'Please Select'
+    },
+    weaponPrimary: {
+        type: String,
+        default: 'Please Select'
+    },
+    weaponSecondary: {
+        type: String,
+        default: 'Please Select'
+    },
 })
 
 export default mongoose.model('User', userSchema)

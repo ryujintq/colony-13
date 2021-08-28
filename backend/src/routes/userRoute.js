@@ -19,4 +19,19 @@ router.get('/:username', asyncHandler(async (req, res, next) => {
     return res.status(200).json({ status: 'success', message: 'User found', data: { user } })
 }))
 
+router.post('/:username', asyncHandler(async (req, res, next) => {
+    const username = req.params.username
+
+    //req.body = { role, level, weaponPrimary, weaponSecondary }
+    const user = await User.findOneAndUpdate({ username }, req.body, { new: true })
+
+    if (!user) {
+        return next(userNotFound())
+    }
+
+    user.password = ''
+
+    return res.status(200).json({ status: 'success', message: 'User found', data: { user } })
+}))
+
 export default router

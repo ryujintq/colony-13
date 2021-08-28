@@ -1,7 +1,7 @@
 const Main = () => {
     return (
-        <div>
-            I AM IN MAIN
+        <div className='flex-1 flex'>
+            Im from Main
         </div>
     )
 }
