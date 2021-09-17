@@ -4,7 +4,7 @@ import Button from "../components/Button"
 import SmallText from "../components/SmallText"
 import { useDispatch, useSelector } from "react-redux"
 import { login, setAuthError } from "../redux/actions/authActions"
-import ErrorMessage from "../components/ErrorMessage"
+import Message from "../components/Message"
 import { useHistory } from "react-router-dom"
 
 const Login = () => {
@@ -15,8 +15,9 @@ const Login = () => {
     const history = useHistory()
 
     useEffect(() => {
+        dispatch(setAuthError(''))
         if (token) history.push('/')
-    }, [token, history])
+    }, [token, history, dispatch])
 
     const handleUsernameChange = (e) => {
         setUsername(e.target.value)
@@ -37,12 +38,12 @@ const Login = () => {
     }
 
     return (
-        <div className='flex-grow flex items-center justify-center'>
-            <div className='bg-white p-5 shadow-md w-72 flex flex-col items-center justify-between'>
+        <div className='h-full flex items-center justify-center'>
+            <div className='bg-white p-5 shadow-md w-72 flex flex-col items-center justify-between text-black'>
                 <form onSubmit={handleSubmit} id='loginForm'>
                     <h2 className='text-3xl'>Login</h2>
                     <div className='my-10'>
-                        {authError && <ErrorMessage text={authError} />}
+                        {authError && <Message text={authError} status='error' />}
                         <Input value={username} onChange={handleUsernameChange} text='Username' />
                         <Input value={password} onChange={handlePasswordChange} text='Password' type='password' />
                     </div>

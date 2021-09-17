@@ -20,22 +20,12 @@ const userSchema = new mongoose.Schema({
         type: String,
         default: ''
     },
-    role: {
-        type: String,
-        default: 'Please Select'
-    },
-    level: {
-        type: String,
-        default: 'Please Select'
-    },
-    weaponPrimary: {
-        type: String,
-        default: 'Please Select'
-    },
-    weaponSecondary: {
-        type: String,
-        default: 'Please Select'
-    },
+    role: String,
+    level: String,
+    weaponPrimary: String,
+    weaponSecondary: String,
+    professions: [String],
+    lastUpdated: Date
 })
 
 export default mongoose.model('User', userSchema)

@@ -22,7 +22,7 @@ router.get('/:username', asyncHandler(async (req, res, next) => {
 router.post('/:username', asyncHandler(async (req, res, next) => {
     const username = req.params.username
 
-    //req.body = { role, level, weaponPrimary, weaponSecondary }
+    //req.body = { role, level, weaponPrimary, weaponSecondary, professions }
     const user = await User.findOneAndUpdate({ username }, req.body, { new: true })
 
     if (!user) {

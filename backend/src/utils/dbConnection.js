@@ -5,7 +5,8 @@ import mongoose from "mongoose"
 //     : process.env.DB_URL
 
 const connectDB = async () => {
-    await mongoose.connect("mongodb://localhost/col13", {
+    await mongoose.connect(
+        process.env.DB_URL_LOCAL, {
         useCreateIndex: true,
         useNewUrlParser: true,
         useUnifiedTopology: true,

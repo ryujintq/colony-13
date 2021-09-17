@@ -3,25 +3,38 @@ import { SET_AUTH, SET_AUTH_ERROR, CLEAR_AUTH, UPDATE_USER } from '../constants/
 import { localStorageRemove, localStorageSet } from '../../utils/localStorage'
 
 export const login = (username, password) => async dispatch => {
-    const { data: { data: { user, token } } } = await axios.post('/auth/login', { username, password })
-    storeAuthData(user, token)
-    dispatch({ type: SET_AUTH, payload: { user, token } })
+    try {
+        const { data: { data: { user, token } } } = await axios.post('/auth/login', { username, password })
+        storeAuthData(user, token)
+        dispatch({ type: SET_AUTH, payload: { user, token } })
+    } catch (error) {
+        dispatchError(error, dispatch)
+    }
 }
 
 export const signup = sigupData => async dispatch => {
-    const { data: { data: { user, token } } } = await axios.post('/auth/signup', sigupData)
-    storeAuthData(user, token)
-    dispatch({ type: SET_AUTH, payload: { user, token } })
+    try {
+        const { data: { data: { user, token } } } = await axios.post('/auth/signup', sigupData)
+        storeAuthData(user, token)
+        dispatch({ type: SET_AUTH, payload: { user, token } })
+    } catch (error) {
+        dispatchError(error, dispatch)
+    }
 }
 
-export const setAuthError = (errorMessage) => dispatch => {
-    dispatch({ type: SET_AUTH_ERROR, payload: { errorMessage } })
+export const updateCharacterInfo = (username, characterInfo, callBack) => async dispatch => {
+    try {
+        const { data: { data: { user } } } = await axios.post(`/user/${username}`, characterInfo)
+        callBack()
+        localStorageSet('user', JSON.stringify(user))
+        dispatch({ type: UPDATE_USER, payload: user })
+    } catch (error) {
+        dispatchError(error, dispatch)
+    }
 }
 
-export const updateCharacterInfo = (username, characterInfo) => async dispatch => {
-    const { data: { data: { user } } } = await axios.post(`/user/${username}`, characterInfo)
-    localStorageSet('user', JSON.stringify(user))
-    dispatch({ type: UPDATE_USER, payload: user })
+export const setAuthError = message => dispatch => {
+    dispatch({ type: SET_AUTH_ERROR, payload: { message } })
 }
 
 export const signout = () => dispatch => {
@@ -33,4 +46,8 @@ export const signout = () => dispatch => {
 const storeAuthData = (user, token) => {
     localStorageSet('user', JSON.stringify(user))
     localStorageSet('token', token)
+}
+
+const dispatchError = (error, dispatch) => {
+    dispatch({ type: SET_AUTH_ERROR, payload: { message: error.response.data.error } })
 }

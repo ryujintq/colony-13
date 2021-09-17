@@ -8,12 +8,14 @@ const DropDown = ({ label, value, options, onChange }) => {
     }
 
     return (
-        <div className='flex flex-col mb-3'>
-            <h3>{label}:</h3>
+        <div className='flex flex-col mb-3 text-black'>
+            <h3 className='text-white'>{label}:</h3>
             <Select
-                value={createSelectValue(value)}
+                // for placeholder to show, value must be null
+                value={value ? createSelectValue(value) : null}
                 options={options}
                 onChange={onChange}
+                placeholder={'Select...'}
             />
         </div>
     )

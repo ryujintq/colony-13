@@ -9,7 +9,7 @@ const App = () => {
 	return (
 		<Provider store={store}>
 			<Router>
-				<div className='min-h-screen bg-gray-100 flex flex-col'>
+				<div className='h-screen bg-new-world bg-center bg-cover flex flex-col overflow-hidden text-white'>
 					<Header />
 					<Routes />
 				</div>

@@ -19,8 +19,8 @@ const authReducer = (state = initialState, action) => {
         case UPDATE_USER:
             return { ...state, user: payload }
         case SET_AUTH_ERROR:
-            const { errorMessage } = payload
-            return { ...state, authError: errorMessage }
+            const { message } = payload
+            return { ...state, authError: message }
         default:
             return state
     }
