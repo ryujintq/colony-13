@@ -4,6 +4,7 @@ const WarMembers = ({ allUsers }) => {
     const color = user => {
         return user.role === 'Tank' ? 'blue' : user.role === 'Damage Dealer' ? 'red' : 'green'
     }
+
     return (
         <div>
             <ListHeader text='Members' />

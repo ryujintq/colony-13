@@ -8,8 +8,12 @@ const WarList = ({ wars, warType }) => {
 
     const history = useHistory()
 
-    const handleOnClick = id => {
-        history.push(`/war/${id}`)
+    const handleOnClick = (isPassed, id) => {
+        if (isPassed)
+            history.push(`/pastwar/${id}`)
+        else {
+            history.push(`/upcomingwar/${id}`)
+        }
     }
 
     return (
@@ -18,7 +22,7 @@ const WarList = ({ wars, warType }) => {
             <div className={`max-h-${height} overflow-y-auto`}>
                 {!wars.length ? message : (
                     wars.map(war => (
-                        <WarElement war={war} onClick={() => handleOnClick(war._id)} key={war._id} />
+                        <WarElement war={war} onClick={() => handleOnClick(war.passed, war._id)} key={war._id} />
                     ))
                 )
                 }

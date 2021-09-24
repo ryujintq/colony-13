@@ -1,11 +1,12 @@
 import { Route, Switch } from "react-router-dom"
-import War from "../pages/War"
 import Character from "../pages/Character"
 import Login from "../pages/Login"
 import Main from "../pages/Main"
 import Signup from "../pages/Signup"
 import PrivateRoute from "./PrivateRoute"
 import NewWar from "../pages/NewWar"
+import UpcomingWar from '../pages/UpcomingWar'
+import PastWar from '../pages/PastWar'
 
 const Routes = () => {
     return (
@@ -15,7 +16,8 @@ const Routes = () => {
                 <Route path='/signup' component={Signup} />
                 <PrivateRoute exact path='/' component={Main} />
                 <PrivateRoute path='/character' component={Character} />
-                <PrivateRoute path='/war/:id' component={War} />
+                <PrivateRoute path='/upcomingwar/:id' component={UpcomingWar} />
+                <PrivateRoute path='/pastwar/:id' component={PastWar} />
                 <PrivateRoute path='/newwar' component={NewWar} />
             </Switch>
         </div>
