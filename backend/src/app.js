@@ -16,7 +16,7 @@ app.use(cors())
 //routes
 app.use('/api/v1/auth', authRoute)
 app.use(authMiddleware)
-app.use('/api/v1/user', userRoute)
+app.use('/api/v1/users', userRoute)
 app.use('/api/v1/wars', warRoute)
 
 //error middleware

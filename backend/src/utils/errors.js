@@ -15,3 +15,7 @@ export const invalidCredentials = () => {
 export const userNotFound = () => {
     return new ErrorResponse('User not found', 404)
 }
+
+export const warNotFound = () => {
+    return new ErrorResponse('War not found', 404)
+}

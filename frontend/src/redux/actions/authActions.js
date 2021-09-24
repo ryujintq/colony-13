@@ -24,7 +24,7 @@ export const signup = sigupData => async dispatch => {
 
 export const updateCharacterInfo = (username, characterInfo, callBack) => async dispatch => {
     try {
-        const { data: { data: { user } } } = await axios.post(`/user/${username}`, characterInfo)
+        const { data: { data: { user } } } = await axios.post(`/users/${username}`, characterInfo)
         callBack()
         localStorageSet('user', JSON.stringify(user))
         dispatch({ type: UPDATE_USER, payload: user })

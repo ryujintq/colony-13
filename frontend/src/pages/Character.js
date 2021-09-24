@@ -51,7 +51,7 @@ const Character = () => {
     }
 
     return (
-        <div className='px-5 mx-auto flex flex-col w-full max-w-xl'>
+        <div className='mx-auto flex flex-col max-w-xl'>
             <ListHeader text='Character Info' />
             {showMessage && <Message text='Character info saved successfully' status='success' />}
             {errorMessage && <Message text={errorMessage} status='error' />}

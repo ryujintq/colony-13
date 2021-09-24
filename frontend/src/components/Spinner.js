@@ -1,6 +1,6 @@
 const Spinner = ({ size, color }) => {
     return (
-        <div className='w-full h-full flex flex-col flex-1 items-center justify-center my-auto'>
+        <div className='flex flex-1 items-center justify-center my-5'>
             <i className={`fas fa-spinner fa-spin fa-${size}x text-${color}`}></i>
         </div>
     )

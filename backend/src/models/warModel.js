@@ -3,20 +3,9 @@ import mongoose from 'mongoose'
 const warSchema = new mongoose.Schema({
     settlement: String,
     position: String,
-    groups: {
-        group1: [{ type: mongoose.SchemaTypes.ObjectId, ref: 'User' }],
-        group2: [{ type: mongoose.SchemaTypes.ObjectId, ref: 'User' }],
-        group3: [{ type: mongoose.SchemaTypes.ObjectId, ref: 'User' }],
-        group4: [{ type: mongoose.SchemaTypes.ObjectId, ref: 'User' }],
-        group5: [{ type: mongoose.SchemaTypes.ObjectId, ref: 'User' }],
-        group6: [{ type: mongoose.SchemaTypes.ObjectId, ref: 'User' }],
-        group7: [{ type: mongoose.SchemaTypes.ObjectId, ref: 'User' }],
-        group8: [{ type: mongoose.SchemaTypes.ObjectId, ref: 'User' }],
-        group9: [{ type: mongoose.SchemaTypes.ObjectId, ref: 'User' }],
-        group10: [{ type: mongoose.SchemaTypes.ObjectId, ref: 'User' }],
-    },
+    groups: Array,
     result: String,
-    passed: { type: String, default: false },
+    passed: { type: Boolean, default: false },
     date: Date
 })
 
