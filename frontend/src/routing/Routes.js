@@ -10,7 +10,7 @@ import PastWar from '../pages/PastWar'
 
 const Routes = () => {
     return (
-        <div className='w-full h-full max-w-7xl mx-auto px-5' >
+        <div className='w-full h-full max-w-7xl mx-auto px-5 pt-12' >
             <Switch>
                 <Route path='/login' component={Login} />
                 <Route path='/signup' component={Signup} />

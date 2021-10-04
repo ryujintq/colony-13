@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import { getWar } from '../api/apiCalls'
-import EndWarBar from '../components/EndWarBar'
 import Spinner from '../components/Spinner'
 import WarGroups from '../components/WarGroups'
 
@@ -11,20 +10,19 @@ const War = ({ match }) => {
 
     useEffect(() => {
         const getAllInfo = async () => {
-            await getWar(id, setWar)
+            const warFromCall = await getWar(id)
+            setWar(warFromCall)
             setLoading(false)
         }
         getAllInfo()
     }, [id])
 
     return (
-        <div className='flex flex-col'>
-            {loading ? <Spinner /> : (
-                <>
-                    <EndWarBar id={id} isPassed={war.passed} />
-                    <WarGroups war={war} />
-                </>
-            )}
+        <div className='flex flex-col h-full '>
+            {loading
+                ? <Spinner />
+                : <WarGroups isPassed={war.passed} groups={war.groups} />
+            }
         </div>
     )
 }

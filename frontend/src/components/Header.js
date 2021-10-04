@@ -21,9 +21,9 @@ const Header = () => {
     }
 
     return (
-        <div className='bg-green-900 px-5'>
-            <div className='max-w-7xl flex items-center justify-between mx-auto py-4'>
-                <h3 className='text-2xl cursor-pointer' onClick={handleHomeClick}>Colony 13</h3>
+        <div className='bg-yellow-600 absolute top-0 w-full h-12'>
+            <div className='max-w-7xl flex items-center justify-between mx-auto px-5 h-full'>
+                <h3 className='text-2xl cursor-pointer' onClick={handleHomeClick}>Ravensgate</h3>
                 {token && (
                     <div className='flex'>
                         <HeaderLink iconClass='fas fa-home' text='Home' onClick={handleHomeClick} />

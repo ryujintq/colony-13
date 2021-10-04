@@ -13,7 +13,13 @@ const DateTimePicker = ({ warDate, handleDateChange, }) => {
         <div className='flex flex-col'>
             <label>Date and Time:</label>
             <div>
-                <input className='h-9 bg-white rounded text-black px-3 w-full' onClick={handleClick} value={warDate.toString()} type='text' placeholder='Select...' readOnly />
+                <input
+                    className='h-9 bg-white rounded text-black px-3 w-full'
+                    onClick={handleClick} value={warDate.toString()}
+                    type='text'
+                    placeholder='Select...'
+                    readOnly
+                />
                 <label className='opacity-0' ref={dateTimeRef}>
                     <DatePicker
                         selected={warDate}

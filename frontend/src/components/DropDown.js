@@ -1,7 +1,6 @@
 import Select from 'react-select'
 
 const DropDown = ({ label, value, options, onChange }) => {
-
     //creates object to work with react-select
     const createSelectValue = data => {
         return { value: `${data}`, label: `${data}` }

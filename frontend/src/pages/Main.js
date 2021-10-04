@@ -13,7 +13,6 @@ const Main = () => {
         getAllWars(setUpcomingWars, setPastWars, setLoading)
     }, [])
 
-
     return (
         <div className='h-full flex flex-col w-full max-w-7xl mx-auto px-5'>
             {loading ? <Spinner /> : (

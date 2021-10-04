@@ -1,16 +1,24 @@
+import { Droppable } from "react-beautiful-dnd"
 import ListHeader from "./ListHeader"
+import User from "./User"
 
 const WarMembers = ({ allUsers }) => {
-    const color = user => {
-        return user.role === 'Tank' ? 'blue' : user.role === 'Damage Dealer' ? 'red' : 'green'
-    }
-
     return (
-        <div>
+        <div className='h-full flex flex-col w-60'>
             <ListHeader text='Members' />
-            {allUsers.map(user => (
-                <p key={user._id} className={`bg-${color(user)}-400 pl-1 text-lg font-semibold text-black`}>{user.username}</p>
-            ))}
+            <Droppable droppableId="users">
+                {(provided) => (
+                    <div className='h-full overflow-auto mb-5' {...provided.droppableProps} ref={provided.innerRef}>
+                        {allUsers.map((user, index) => {
+                            if (user.role && user.weaponPrimary && user.weaponSecondary && user.level) {
+                                return <User user={user} key={user._id} index={index} />
+
+                            }
+                        })}
+                        {provided.placeholder}
+                    </div>
+                )}
+            </Droppable>
         </div>
     )
 }
